@@ -1,0 +1,712 @@
+@import "compass";
+@import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
+@import "compass/typography/text/force-wrap";
+
+//@import "retina-sprites";
+//@import "retina-background-image";
+@import "mixins";
+@import "retina-background-image";
+@import "retina-sprites";  // import this once for all sprites
+/* ======== In production, I would abstract all of the following into it's own SCSS file ======== */
+$sprites: sprite-map("sprites/*.png");              // import 1x sprites 
+$sprites2x: sprite-map("sprites-retina/*.png");     // import 2x sprites  
+
+ // $sprites: sprite-map("sprites/buttons/*.png", $spacing: 40px);          // add padding to sprite sheet
+ // $sprites2x: sprite-map("sprites-retina/buttons/*.png", $spacing: 80px); // add padding to sprite sheet
+
+
+
+ body{
+  font-family: 'Oxygen', sans-serif;
+}
+#logo{
+  /*
+  @include background-image(url(../img/logo.png));
+  background-repeat: no-repeat;
+  display: block;
+  text-indent: -9999px;
+  width: 284px;
+  height: 39px;
+  */
+  @include retina-sprite(logo);
+  display: block;
+  text-indent: -9999px;
+
+  @media only screen and (max-width: 320px) { 
+    width: 245px;
+    height: 45px;
+  @include background-size(contain); // auto||contain||cover||unit
+}
+
+
+@media only screen and (max-width: 767px) { 
+  margin: 10px 0 0 10px; 
+}
+
+@media only screen and (min-width: 767px) { 
+  margin: 3px 0;
+  padding: 0 
+}
+}
+
+#navigation{
+  @include background-image(url(../img/top_bar.jpg));
+  background-repeat: repeat-x;
+}
+#navigation.navbar-default{
+  border-color: none;
+  background-color: transparent;
+  border-width: 0;
+
+  @media only screen and (min-width: 767px) { 
+    padding: 18px 0; 
+  }
+
+  .navbar-nav .active > a, 
+  .navbar-nav .active > a:hover,
+  .navbar-nav a:hover,
+  .navbar-nav .active > a:focus {
+    background-color: transparent;
+    color: white;
+  }
+  a{
+    color: white;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    @media only screen and (min-width: 767px) { 
+      padding-left: 7px;
+      padding-right: 7px;
+    }
+    @media only screen and (max-width: 767px) { 
+    //padding-left: 0px;
+    //padding-right: 0px;
+  }
+}
+
+.navbar-collapse{
+  @media only screen and (max-width: 767px) {
+    background-color: #32ab90;
+    border-width: 0;
+    border-color: none;
+    margin-top: 10px;
+  }
+}
+
+.navbar-nav.navbar-right:last-child {
+    //margin-right: -37px;
+  }
+  
+  a.download-btn{ 
+    @media only screen and (min-width: 767px) { 
+      border-radius: 5px;
+      background: rgba(255,255,255,0.5);
+      color: $blue;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-left: 15px;
+
+    } 
+    &:hover{
+      @media only screen and (min-width: 767px) {  
+        background: rgba(255,255,255,0.9);
+        color: $bluelight; 
+
+      } 
+    }
+  }
+
+
+
+}
+
+#header{
+  background-color: #32ab90;
+  @include background-image(url(../img/header_bg.jpg));
+  background-repeat: repeat-x;
+  background-position: left bottom;
+
+  .container{
+    //@include background-image(url(../img/header_bg.jpg));
+    //background-repeat: repeat-y;
+
+    .intro{ 
+     @media only screen and (max-width: 750px) { 
+      margin-top: 80px;
+      text-align: center; 
+    }
+
+    @media only screen and (min-width: 750px) and (max-width: 990px) { 
+      margin-top: 80px; 
+    }
+
+    @media only screen and (min-width: 990px) { 
+      margin-top: 168px;
+    }
+
+    h1{
+      color: white;
+      font-family: 'Oxygen', sans-serif;
+      font-weight: 300;
+
+      @media only screen and (max-width: 360px) { 
+       font-size: 30px;
+     }
+     @media only screen and (min-width: 767px) { 
+      margin-top: 30px;
+      font-size: 37px;
+    }
+    @media only screen and (min-width: 970px) { 
+      font-size: 48px;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) { 
+      font-size: 40px;
+    }
+  }
+
+  h3{
+    color: white;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 200;
+    @media only screen and (max-width: 360px) { 
+     font-size: 16px;
+   }
+
+
+   @media only screen and (max-width: 767px) { 
+    margin: 20px 0 30px 0;
+  }
+  @media only screen and (min-width: 767px) { 
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 20px 0 30px 0;
+
+  }
+  @media only screen and (min-width: 1170px) {
+    margin-right: 105px;
+  }
+}
+
+
+}
+}
+
+}
+
+
+.application{
+  position: relative;
+  @include background-retina("application.png", "application-2x.png");
+  @include background-size(contain);
+  background-repeat: no-repeat;
+
+  max-width: 100%; 
+  width: 434px;
+  height: 332px;
+  display: block;
+
+
+  @media only screen and (min-width: 767px) {
+    //position: absolute;
+    //right: 35px;
+    //top: 130px;
+
+  }
+  @media only screen and (max-width: 767px) {
+    text-align: center !important;
+    display: block;
+    margin: 10px auto;
+    max-width: 40%; 
+    border:1px solid red;
+  }
+
+  @media only screen and (min-width: 767px) and (max-width: 1024px) {
+  @include background-size(contain); // auto||contain||cover||unit
+  //margin-left: -50px;
+  //border: 1px solid red;
+}
+@media only screen and (min-width: 760px) {
+  //max-width: 100%; 
+  margin-top: 130px;
+  margin-bottom: 40px;
+}
+}
+.txt-center{ 
+  text-align: center !important; 
+}
+
+.btn-green{
+  @include btn-big($green, 15px 26px);
+  @media only screen and (min-width: 767px) {
+    margin-right: 16px;
+  }
+}
+
+.btn-blue{
+  @include btn-big($bluelight, 15px 26px);
+}
+
+
+.higlights{
+  margin-top: 20px;
+
+  @media only screen and (min-width: 750px) {
+    margin-top: 90px;
+  }
+
+  @media only screen and (max-width: 360px) {
+    text-align: center!important;
+  }
+
+
+  h3{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+
+
+    @media only screen and (min-width: 750px) {
+      font-size: 24px;
+      margin-bottom: 36px;
+    }
+
+  }
+
+  p{
+    font-family: 'Oxygen', sans-serif;
+    color: #515151;
+    font-weight: 200;
+    font-size: 18px; 
+    line-height: 1.6;
+  }
+
+  &:nth-of-type(2) { 
+    div img{
+      //text-align: right;
+      //border:2px solid red; 
+    }
+
+  }
+
+  img{
+    display: inline-block;
+    @media only screen and (max-width: 360px) {
+      text-align: center!important;
+    }
+  }
+
+
+}
+
+.txt-right{
+  text-align: right;
+}
+
+#features{
+  padding: 80px 0;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+  background-color: #f2fbfa; 
+
+  p{
+    font-family: 'Oxygen', sans-serif;
+  }
+}
+
+
+.list-features{ 
+  @include horizontal-list();
+
+  li{  
+    display: inline;
+    float: left;
+    width: 45%;
+    margin: 1% 2%;
+    padding: 0; 
+    @media only screen and (max-width: 360px) {
+      &:nth-child(3n+0) { clear: left; }
+      width: 96%;
+    }
+
+    @media only screen and (min-width: 361px) {
+      &:nth-child(4n+0) { clear: left; }
+      width: 26%;
+      margin: 1% 3%;
+      padding: 0; 
+
+    }
+    
+    /*
+    &:nth-child(5n-2) {
+      border:1px solid red;
+      @include pie-clearfix;
+    }
+*/
+div.list-features-wrapper{  
+}
+
+h4{
+  font-family: 'Oxygen', sans-serif;
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 200;
+  font-size: 24px;
+  @include force-wrap;
+}
+
+p{
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 200;
+  font-size: 16px; 
+  @include force-wrap;
+}
+}
+}
+.features1, 
+.features2, 
+.features3,
+.features4,
+.features5,
+.features6 {
+  margin: 0 auto;
+  display: block;
+    //border:1px solid red;  
+  }
+
+
+
+
+/*
+.application{
+  @include retina-sprite(application);
+}
+*/
+.features1 {
+  @include retina-sprite(features1);
+}
+.features2 {
+  @include retina-sprite(features2);
+}
+.features3 {
+  @include retina-sprite(features3);
+}
+.features4 {
+  @include retina-sprite(features4);
+} 
+.features5 {
+  @include retina-sprite(features5);
+}
+.features6 {
+  @include retina-sprite(features6);
+}
+
+
+#who-use-wrapper{
+  @media only screen and (min-width: 361px) {
+    margin-bottom: 90px;
+  }
+  a{
+    @media only screen and (min-width: 361px) {
+      font-size: 18px;
+      font-family: 'Oxygen', sans-serif;
+      font-weight: 200;
+      text-decoration: underline;
+    } 
+  }
+  p.intro{
+    @media only screen and (min-width: 361px) {
+      max-width: 600px;
+    }
+  }
+}
+
+.illustration1 {
+  @include retina-sprite(illustration1);
+}
+
+.illustration2 {
+  @include retina-sprite(illustration2);
+}
+.illustration3 {
+  @include retina-sprite(illustration3);
+}
+
+
+#sponsor-wrapper{
+ background-color: #32ab90;
+ @include background-image(url(../img/footer_bg.jpg));
+ background-repeat: repeat-x;
+ background-position: left top;
+}
+
+
+
+.highlights{
+  text-align: center;
+  @media only screen and (max-width: 360px) {
+    //padding: 0 10px;
+
+  }
+  h2{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 200;
+    font-size: 40px;
+  }
+  .intro{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 200;
+    font-size: 18px;
+
+
+    @media only screen and (min-width: 750px) {
+      max-width: 460px;
+      margin: 4px auto 45px;
+      display: block;
+    }
+  }
+
+  &.love{
+    h2{
+     @media only screen and (min-width: 750px) {
+      margin: 108px 0 30px;
+    }
+  }
+
+
+}
+
+&.sponsor{
+  margin: 10px 0 20px;
+  text-align: center;
+  color: $white;
+  @media only screen and (max-width: 360px) {
+
+  }
+
+  @media only screen and (min-width: 750px) {
+    margin: 50px 0 70px;
+  }
+
+  h2{ 
+    margin-bottom: 0;
+  }
+  a{
+    color: $white;
+    text-decoration: underline;
+  }
+}
+.intro{
+  font-family: 'Oxygen', sans-serif;
+  font-weight: 200;
+  font-size: 20px;
+  @media only screen and (max-width: 360px) {
+  font-size: 18px;
+  line-height: 1.4;
+  padding: 0 10px;
+  }
+
+
+  @media only screen and (min-width: 750px) {
+    max-width: 760px;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.8;
+
+  }
+}
+}
+
+.clevertech{
+  @include retina-sprite(clevertech);
+  display: block;
+  margin: 0 auto;
+  @media only screen and (max-width: 320px) {
+    @include retina-sprite(clevertechsmall);
+    //max-width: 300px;
+    //width: 300px;
+    //@include background-size(cover); // multiple: comma-delimited
+
+  }
+}
+
+
+#wrap {
+  height: auto;
+  margin: 0 auto -160px;
+  min-height: 100%;
+  padding: 0 0 160px;
+}
+
+
+#footer { 
+  margin-top: 10px;
+  height: 60px;
+  margin: 50px 0; 
+}
+
+#logo-small{
+  @include retina-sprite(logosmall);
+  display: inline-block;
+  text-indent: -9999px;
+  @media only screen and (max-width: 360px) {
+    display: block;
+    margin: 0 auto 10px;
+  }
+  
+}
+
+.nav-footer{
+ @include horizontal-list(1em);
+ display: inline;
+ float: right;
+
+ @media only screen and (max-width: 360px) {
+  float: none; 
+  display: block;
+  margin: 0 auto 10px;
+  text-align: center;
+ }
+ @media only screen and (min-width: 750px) {
+  @include horizontal-list(1.4em); 
+  
+} 
+li{
+  @media only screen and (max-width: 360px) {
+  float: none; 
+  display: block;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+
+ }
+}
+a{
+  text-decoration: none;
+  color: $bluelight;
+  text-transform: uppercase;
+  font-size: 12px;
+
+  @media only screen and (min-width: 750px) {
+    font-size: 14px;
+  }
+}
+}
+
+.legal{
+  margin: 5px 0;
+   @media only screen and (max-width: 360px) {
+    text-align: center;
+   }
+}
+#download{
+
+  text-align: center;
+
+  .modal-header {
+    border-bottom: none; 
+    padding: 15px;
+  }
+
+  h3{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 100;
+    color: $blue;
+    @media only screen and (min-width: 361px) {
+      font-size: 45px;
+
+    }
+  }
+  h4{
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 100;
+    color: #495e62;
+    @media only screen and (min-width: 361px) {
+      font-size: 20px;
+      line-height: 1.9;
+      margin: 25px 0 40px;
+
+    }
+  }
+  .close {
+    color: $green;
+    opacity: 1; 
+  }
+}
+
+.frameworks{
+  display: block;
+  max-width: 70%;
+  margin: 10px auto 50px;
+  @include border-radius(5px);
+  border:1px solid $bluelight;
+  text-align: center;
+
+  @media only screen and (max-width: 360px) {
+   min-width: 260px;
+  }
+}
+.framework-icons{ 
+  margin: 10px auto;
+  display: block; 
+
+}
+.f-row{
+ display: inline-block;
+ text-align: center;
+ @include pie-clearfix;
+ width: 100%;
+
+ &:nth-child(2){
+   border-top:1px solid $bluelight;
+   border-bottom:1px solid $bluelight;
+ }
+
+ &:hover{
+    //@include box-shadow(2px 0 2px rgba(black,0.1)); // multiple: comma-delimited
+  }
+}
+.node{
+ @include retina-sprite(framework1); 
+}
+.ruby{
+ @include retina-sprite(framework2); 
+
+}
+.php{
+ @include retina-sprite(framework3); 
+}
+
+
+#video{
+
+  .modal-header {
+    border-bottom: none; 
+    padding: 0;
+  }
+  .modal-body
+  {
+    padding: 0;
+    margin: 0;
+  }
+  .close {
+    color: $green;
+    float: none;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: 0 1px 0 #FFFFFF;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    z-index: 999;
+    padding: 3px 10px 5px;
+    background: black;
+  }
+}
+
+
+
+
